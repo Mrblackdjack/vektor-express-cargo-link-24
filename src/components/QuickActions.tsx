@@ -9,7 +9,7 @@ const QuickActions: React.FC = () => {
   
   const handleNewCargo = () => {
     toast.info("Открытие формы размещения груза");
-    // navigate('/new-cargo');
+    navigate('/new-cargo');
   };
   
   const handleFindCargo = () => {
@@ -19,12 +19,12 @@ const QuickActions: React.FC = () => {
   
   const handleDocuments = () => {
     toast.info("Переход к документам");
-    // navigate('/documents');
+    navigate('/documents');
   };
   
   const handlePayments = () => {
     toast.info("Открытие раздела платежей");
-    // navigate('/payments');
+    navigate('/wallet');
   };
   
   return (

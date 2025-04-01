@@ -10,6 +10,12 @@ import SearchPage from "./pages/SearchPage";
 import ProfilePage from "./pages/ProfilePage";
 import DocumentsPage from "./pages/DocumentsPage";
 import StatsPage from "./pages/StatsPage";
+import VehiclesPage from "./pages/VehiclesPage";
+import WalletPage from "./pages/WalletPage";
+import RatingPage from "./pages/RatingPage";
+import ProfileLevelPage from "./pages/ProfileLevelPage";
+import ReviewsPage from "./pages/ReviewsPage";
+import NewCargoPage from "./pages/NewCargoPage";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +31,12 @@ const App = () => (
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/documents" element={<DocumentsPage />} />
           <Route path="/stats" element={<StatsPage />} />
+          <Route path="/vehicles" element={<VehiclesPage />} />
+          <Route path="/wallet" element={<WalletPage />} />
+          <Route path="/rating" element={<RatingPage />} />
+          <Route path="/profile-level" element={<ProfileLevelPage />} />
+          <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/new-cargo" element={<NewCargoPage />} />
           {/* Additional routes would be added here */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

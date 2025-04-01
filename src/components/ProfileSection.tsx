@@ -51,27 +51,27 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
   
   const handleGoToWallet = () => {
     toast.info("Переход в раздел баланса");
-    // navigate('/wallet');
+    navigate('/wallet');
   };
   
   const handleGoToRating = () => {
     toast.info("Просмотр рейтинга");
-    // navigate('/rating');
+    navigate('/rating');
   };
   
   const handleGoToProfileLevel = () => {
     toast.info("Информация об уровне профиля");
-    // navigate('/profile-level');
+    navigate('/profile-level');
   };
   
   const handleGoToVehicles = () => {
     toast.info("Просмотр списка транспортных средств");
-    // navigate('/vehicles');
+    navigate('/vehicles');
   };
   
   const handleGoToReviews = () => {
     toast.info("Просмотр всех отзывов");
-    // navigate('/reviews');
+    navigate('/reviews');
   };
   
   return (
