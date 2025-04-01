@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -45,7 +46,8 @@ const Index = () => {
   
   const handleCreateOrder = () => {
     if (isLoggedIn) {
-      navigate('/new-order');
+      toast.info("Открытие формы создания заказа");
+      // navigate('/new-order');
     } else {
       toast.error('Необходимо войти в систему', {
         description: 'Для создания заказа необходимо авторизоваться',
@@ -55,6 +57,14 @@ const Index = () => {
         }
       });
     }
+  };
+  
+  const handleDocumentsClick = () => {
+    navigate('/documents');
+  };
+  
+  const handleStatsClick = () => {
+    navigate('/stats');
   };
   
   return (
@@ -76,9 +86,13 @@ const Index = () => {
           distance="820 км" 
         />
         <NotificationCenter />
-        <DocumentsList />
+        <div onClick={handleDocumentsClick}>
+          <DocumentsList />
+        </div>
         <ActiveLoadsList />
-        <StatisticsSection />
+        <div onClick={handleStatsClick}>
+          <StatisticsSection />
+        </div>
       </main>
       
       <BottomNavigation />

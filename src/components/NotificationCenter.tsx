@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Bell, Check, ChevronRight, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 interface Notification {
   id: string;
@@ -58,11 +59,30 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({
     setNotifications(notifications.map(n => 
       n.id === id ? { ...n, read: true } : n
     ));
+    toast.success("Отмечено как прочитанное");
   };
   
   const removeNotification = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
     setNotifications(notifications.filter(n => n.id !== id));
+    toast.success("Уведомление удалено");
+  };
+  
+  const handleNotificationClick = (notification: Notification) => {
+    if (notification.actionUrl) {
+      toast.info(`Переход: ${notification.actionUrl}`);
+      // Actually navigate only if we have a valid route
+      if (notification.actionUrl.includes('/orders/')) {
+        toast.info(`Просмотр заказа ${notification.actionUrl.split('/').pop()}`);
+      } else if (notification.actionUrl.includes('/documents/')) {
+        toast.info(`Просмотр документа №${notification.actionUrl.split('/').pop()}`);
+      }
+    }
+  };
+  
+  const handleViewAllNotifications = () => {
+    toast.info("Просмотр всех уведомлений");
+    // navigate('/notifications');
   };
   
   const getNotificationColor = (type: string) => {
@@ -95,7 +115,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({
         {notifications.length > 0 && (
           <button 
             className="text-blue-600 dark:text-blue-400 text-sm hover:underline"
-            onClick={() => navigate('/notifications')}
+            onClick={handleViewAllNotifications}
           >
             Все
           </button>
@@ -108,7 +128,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({
             <div 
               key={notification.id}
               className={`border-l-4 p-3 rounded-r-lg cursor-pointer hover:shadow-md transition-shadow ${getNotificationColor(notification.type)}`}
-              onClick={() => notification.actionUrl && navigate(notification.actionUrl)}
+              onClick={() => handleNotificationClick(notification)}
             >
               <div className="flex justify-between">
                 <div className="flex-1">

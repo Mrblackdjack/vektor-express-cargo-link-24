@@ -2,6 +2,7 @@
 import React from 'react';
 import { Star, StarHalf, Truck, TrendingUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 interface ProfileSectionProps {
   name?: string;
@@ -48,6 +49,31 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
     return stars;
   };
   
+  const handleGoToWallet = () => {
+    toast.info("Переход в раздел баланса");
+    // navigate('/wallet');
+  };
+  
+  const handleGoToRating = () => {
+    toast.info("Просмотр рейтинга");
+    // navigate('/rating');
+  };
+  
+  const handleGoToProfileLevel = () => {
+    toast.info("Информация об уровне профиля");
+    // navigate('/profile-level');
+  };
+  
+  const handleGoToVehicles = () => {
+    toast.info("Просмотр списка транспортных средств");
+    // navigate('/vehicles');
+  };
+  
+  const handleGoToReviews = () => {
+    toast.info("Просмотр всех отзывов");
+    // navigate('/reviews');
+  };
+  
   return (
     <section className="p-4">
       <div className="flex items-center space-x-4 mb-6">
@@ -74,7 +100,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
             </div>
             <span 
               className="text-gray-600 dark:text-gray-300 ml-1 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400"
-              onClick={() => navigate('/reviews')}
+              onClick={handleGoToReviews}
             >
               ({reviewCount} отзывов)
             </span>
@@ -85,14 +111,14 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div 
           className="bg-blue-50 dark:bg-gray-700 p-3 rounded-lg cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors"
-          onClick={() => navigate('/wallet')}
+          onClick={handleGoToWallet}
         >
           <p className="text-gray-600 dark:text-gray-300 text-sm">Баланс</p>
           <p className="font-bold dark:text-white">{balance.toLocaleString('ru-RU')} ₽</p>
         </div>
         <div 
           className="bg-blue-50 dark:bg-gray-700 p-3 rounded-lg cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors"
-          onClick={() => navigate('/rating')}
+          onClick={handleGoToRating}
         >
           <p className="text-gray-600 dark:text-gray-300 text-sm">Рейтинг</p>
           <div className="flex items-center">
@@ -104,7 +130,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
       
       <div 
         className="mb-6 cursor-pointer"
-        onClick={() => navigate('/profile-level')}
+        onClick={handleGoToProfileLevel}
       >
         <div className="flex justify-between items-center mb-2">
           <h3 className="font-semibold dark:text-white">Уровень профиля</h3>
@@ -123,8 +149,8 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
       </div>
       
       <div 
-        className="mb-6"
-        onClick={() => navigate('/vehicles')}
+        className="mb-6 cursor-pointer"
+        onClick={handleGoToVehicles}
       >
         <div className="flex justify-between items-center mb-2">
           <h3 className="font-semibold dark:text-white">Транспорт</h3>

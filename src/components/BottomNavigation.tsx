@@ -39,7 +39,7 @@ const BottomNavigation = () => {
       
       <button 
         className={`p-2 flex flex-col items-center transition-colors ${
-          location.pathname.includes('/documents') ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+          isActive('/documents') ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
         }`}
         onClick={() => navigateTo('/documents')}
       >
@@ -49,7 +49,7 @@ const BottomNavigation = () => {
       
       <button 
         className={`p-2 flex flex-col items-center transition-colors ${
-          location.pathname.includes('/stats') ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+          isActive('/stats') ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
         }`}
         onClick={() => navigateTo('/stats')}
       >
@@ -59,7 +59,7 @@ const BottomNavigation = () => {
       
       <button 
         className={`p-2 flex flex-col items-center transition-colors ${
-          location.pathname.includes('/profile') ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+          isActive('/profile') ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
         }`}
         onClick={() => navigateTo('/profile')}
       >
