@@ -23,7 +23,13 @@ import {
   CheckCircle,
   Star,
   Plus,
-  Edit
+  Edit,
+  History,
+  Mail,
+  Phone,
+  MapPin,
+  UserPlus,
+  AlertTriangle
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -43,6 +49,16 @@ import {
   DialogClose
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetClose,
+  SheetFooter
+} from "@/components/ui/sheet";
 import Header from '@/components/Header';
 import BottomNavigation from '@/components/BottomNavigation';
 
@@ -70,6 +86,7 @@ const ProfilePage = () => {
   });
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const [showDeleteAccountDialog, setShowDeleteAccountDialog] = useState(false);
+  const [showEditProfileSheet, setShowEditProfileSheet] = useState(false);
   const [is2FAEnabled, setIs2FAEnabled] = useState(false);
   const [notificationSettings, setNotificationSettings] = useState({
     newOrders: true,
@@ -98,6 +115,41 @@ const ProfilePage = () => {
     // This would typically open the auth modal, but for now we'll just navigate home
   };
 
+  // Handle navigation to personal data page
+  const handlePersonalData = () => {
+    toast.info('Переход к личным данным');
+    navigate('/profile/personal-data');
+  };
+
+  // Handle roles and access
+  const handleRolesAccess = () => {
+    toast.info('Переход к ролям и доступам');
+    navigate('/profile/roles');
+  };
+
+  // Handle login history
+  const handleLoginHistory = () => {
+    toast.info('Просмотр истории входов');
+    navigate('/profile/login-history');
+  };
+
+  // Handle password change
+  const handleChangePassword = () => {
+    toast.info('Переход к смене пароля');
+    navigate('/profile/change-password');
+  };
+
+  // Handle edit profile
+  const handleEditProfile = () => {
+    setShowEditProfileSheet(true);
+  };
+
+  // Handle save profile changes
+  const handleSaveProfileChanges = () => {
+    toast.success('Изменения профиля сохранены');
+    setShowEditProfileSheet(false);
+  };
+
   // Create menu groups based on the requested structure
   const menuGroups: MenuGroup[] = [
     // Account Group
@@ -109,14 +161,14 @@ const ProfilePage = () => {
           title: 'Мои данные',
           description: 'Контакты, юридические данные, адреса',
           icon: <User size={20} />,
-          onClick: () => navigate('/profile/personal-data'),
+          onClick: handlePersonalData,
           rightElement: <ChevronRight size={18} />
         },
         {
           title: 'Роли и доступы',
           description: 'Управление ролями и командой',
           icon: <Users size={20} />,
-          onClick: () => navigate('/profile/roles'),
+          onClick: handleRolesAccess,
           rightElement: <ChevronRight size={18} />
         }
       ]
@@ -129,25 +181,29 @@ const ProfilePage = () => {
         {
           title: 'Двухфакторная аутентификация',
           icon: <Lock size={20} />,
-          onClick: () => setIs2FAEnabled(!is2FAEnabled),
+          onClick: () => {
+            const newValue = !is2FAEnabled;
+            setIs2FAEnabled(newValue);
+            toast.success(newValue ? 'Двухфакторная аутентификация включена' : 'Двухфакторная аутентификация отключена');
+          },
           rightElement: <Switch checked={is2FAEnabled} onCheckedChange={setIs2FAEnabled} />
         },
         {
           title: 'История входов',
           description: 'Устройства, даты, IP-адреса',
-          icon: <Shield size={20} />,
-          onClick: () => navigate('/profile/login-history'),
+          icon: <History size={20} />,
+          onClick: handleLoginHistory,
           rightElement: <ChevronRight size={18} />
         },
         {
           title: 'Сменить пароль',
           icon: <Lock size={20} />,
-          onClick: () => navigate('/profile/change-password'),
+          onClick: handleChangePassword,
           rightElement: <ChevronRight size={18} />
         },
         {
           title: 'Удалить аккаунт',
-          icon: <Shield size={20} className="text-red-500" />,
+          icon: <AlertTriangle size={20} className="text-red-500" />,
           onClick: () => setShowDeleteAccountDialog(true),
           rightElement: <ChevronRight size={18} className="text-red-500" />
         }
@@ -362,7 +418,15 @@ const ProfilePage = () => {
                       ))}
                       <Star size={14} fill="currentColor" className="text-yellow-400 opacity-50" />
                     </div>
-                    <span className="text-gray-600 dark:text-gray-400 ml-1 text-xs">(12 отзывов)</span>
+                    <span 
+                      className="text-gray-600 dark:text-gray-400 ml-1 text-xs cursor-pointer"
+                      onClick={() => {
+                        toast.info('Переход к отзывам');
+                        navigate('/reviews');
+                      }}
+                    >
+                      (12 отзывов)
+                    </span>
                   </div>
                 </div>
               </div>
@@ -370,9 +434,23 @@ const ProfilePage = () => {
               <div className="mt-2">
                 <div className="text-sm flex justify-between mb-1">
                   <span className="text-gray-600 dark:text-gray-400">Доступно</span>
-                  <span className="font-medium dark:text-white">25,640 ₽</span>
+                  <span 
+                    className="font-medium dark:text-white cursor-pointer"
+                    onClick={() => {
+                      toast.info('Переход к балансу');
+                      navigate('/wallet');
+                    }}
+                  >
+                    25,640 ₽
+                  </span>
                 </div>
-                <div className="bg-gray-200 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+                <div 
+                  className="bg-gray-200 dark:bg-gray-700 h-2 rounded-full overflow-hidden cursor-pointer"
+                  onClick={() => {
+                    toast.info('Переход к уровню профиля');
+                    navigate('/profile-level');
+                  }}
+                >
                   <div className="bg-blue-500 h-full rounded-full" style={{ width: '75%' }}></div>
                 </div>
                 <div className="flex justify-between text-xs mt-1">
@@ -386,7 +464,7 @@ const ProfilePage = () => {
           <Button 
             variant="outline"
             className="w-full mt-4"
-            onClick={() => navigate('/profile/edit')}
+            onClick={handleEditProfile}
           >
             Редактировать профиль
           </Button>
@@ -516,6 +594,101 @@ const ProfilePage = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Edit Profile Sheet */}
+      <Sheet open={showEditProfileSheet} onOpenChange={setShowEditProfileSheet}>
+        <SheetContent className="w-full sm:max-w-md">
+          <SheetHeader>
+            <SheetTitle>Редактирование профиля</SheetTitle>
+            <SheetDescription>
+              Внесите изменения в свой профиль. Нажмите сохранить, когда закончите.
+            </SheetDescription>
+          </SheetHeader>
+          <div className="space-y-4 py-4">
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <Avatar className="h-24 w-24 border-2 border-blue-500">
+                  <AvatarImage src="https://randomuser.me/api/portraits/men/42.jpg" alt="Иван Петров" />
+                  <AvatarFallback>ИП</AvatarFallback>
+                </Avatar>
+                <Button 
+                  size="icon" 
+                  variant="secondary" 
+                  className="absolute -bottom-2 -right-2 rounded-full h-8 w-8 shadow-md"
+                  onClick={() => toast.info('Загрузка фото')}
+                >
+                  <Edit size={16} />
+                </Button>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Имя</label>
+              <input 
+                type="text" 
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                placeholder="Имя"
+                defaultValue="Иван"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Фамилия</label>
+              <input 
+                type="text" 
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                placeholder="Фамилия"
+                defaultValue="Петров"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Телефон</label>
+              <div className="flex items-center space-x-2">
+                <Phone size={18} className="text-gray-500" />
+                <input 
+                  type="tel" 
+                  className="flex-1 h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  placeholder="+7 (XXX) XXX-XX-XX"
+                  defaultValue="+7 (999) 123-45-67"
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Email</label>
+              <div className="flex items-center space-x-2">
+                <Mail size={18} className="text-gray-500" />
+                <input 
+                  type="email" 
+                  className="flex-1 h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  placeholder="email@example.com"
+                  defaultValue="ivan.petrov@example.com"
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Город</label>
+              <div className="flex items-center space-x-2">
+                <MapPin size={18} className="text-gray-500" />
+                <input 
+                  type="text" 
+                  className="flex-1 h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  placeholder="Город"
+                  defaultValue="Москва"
+                />
+              </div>
+            </div>
+          </div>
+          <SheetFooter>
+            <SheetClose asChild>
+              <Button variant="outline">Отмена</Button>
+            </SheetClose>
+            <Button onClick={handleSaveProfileChanges}>Сохранить изменения</Button>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 };
