@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -70,7 +69,12 @@ const Index = () => {
       <main className="pb-20">
         <ProfileSection />
         <QuickActions />
-        <LiveTrackingMap />
+        <LiveTrackingMap 
+          originCity="Москва" 
+          destinationCity="Казань" 
+          eta="22 мая, 18:30" 
+          distance="820 км" 
+        />
         <NotificationCenter />
         <DocumentsList />
         <ActiveLoadsList />

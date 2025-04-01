@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FileText, FileContract, Receipt } from 'lucide-react';
+import { FileText, File, Receipt } from 'lucide-react';
 
 interface Document {
   id: string;
@@ -66,7 +65,7 @@ const DocumentsList: React.FC<DocumentsListProps> = ({
       case 'contract':
         return (
           <div className="bg-yellow-100 dark:bg-yellow-900 p-2 rounded-full mr-3">
-            <FileContract className="h-5 w-5 text-yellow-600 dark:text-yellow-300" />
+            <File className="h-5 w-5 text-yellow-600 dark:text-yellow-300" />
           </div>
         );
       case 'receipt':
