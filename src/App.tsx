@@ -24,6 +24,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import OrdersPage from "./pages/OrdersPage";
 import TemplatesPage from "./pages/TemplatesPage";
+import TrackingPage from "./pages/TrackingPage";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
           <Route path="/profile-level" element={<ProfileLevelPage />} />
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/new-cargo" element={<NewCargoPage />} />
+          <Route path="/tracking/:orderId" element={<TrackingPage />} />
           
           {/* Profile related routes */}
           <Route path="/profile/personal-data" element={<PersonalDataPage />} />

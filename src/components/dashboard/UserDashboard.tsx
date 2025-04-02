@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Package, Truck, FileText, CreditCard, MessageCircle, User, Bell, Map } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
 interface DashboardItem {
   id: string;
@@ -29,6 +28,13 @@ const UserDashboard = () => {
       count: activeOrders
     },
     {
+      id: 'tracking',
+      title: 'Отслеживание',
+      description: 'Отслеживание текущих перевозок',
+      icon: <Map size={24} />,
+      path: '/tracking/VE123456'
+    },
+    {
       id: 'cargo',
       title: 'Создать заявку',
       description: 'Оформление новой перевозки',
@@ -41,13 +47,6 @@ const UserDashboard = () => {
       description: 'Сохраненные шаблоны заказов',
       icon: <FileText size={24} />,
       path: '/templates'
-    },
-    {
-      id: 'tracking',
-      title: 'Отслеживание',
-      description: 'Отслеживание текущих перевозок',
-      icon: <Map size={24} />,
-      path: '/tracking'
     },
     {
       id: 'wallet',
