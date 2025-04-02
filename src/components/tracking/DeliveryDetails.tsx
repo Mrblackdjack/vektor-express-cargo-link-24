@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
-import { Package, Weight, Cube, Calendar, Clock, User, Truck, FileText } from 'lucide-react';
+import { Package, Weight, Box, Calendar, Clock, User, Truck, FileText } from 'lucide-react';
 
 interface DriverType {
   name: string;
@@ -56,7 +56,7 @@ const DeliveryDetails: React.FC<DeliveryDetailsProps> = ({
               </div>
             </div>
             <div className="flex items-center">
-              <Cube className="h-5 w-5 text-gray-500 mr-2" />
+              <Box className="h-5 w-5 text-gray-500 mr-2" />
               <div>
                 <div className="text-xs text-gray-500">Объем</div>
                 <div className="font-medium">{volume}</div>

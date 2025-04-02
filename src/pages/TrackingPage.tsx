@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronLeft, MapPin, Package, Truck, Calendar, Info, MessageSquare, Clock } from 'lucide-react';
@@ -64,7 +63,6 @@ const TrackingPage: React.FC = () => {
   });
   const [activeTab, setActiveTab] = useState<'map' | 'details' | 'updates'>('map');
   
-  // In a real application, you would fetch the order details based on the orderId
   useEffect(() => {
     console.log(`Fetching tracking data for order ID: ${orderId}`);
     // Here you would fetch real data
@@ -161,7 +159,7 @@ const TrackingPage: React.FC = () => {
               origin={orderDetails.originCity}
               destination={orderDetails.destinationCity}
               currentLocation={orderDetails.currentLocation}
-              waypoints={orderDetails.route}
+              waypoints={orderDetails.route as any}
             />
             
             <Card className="mt-4 mb-4">

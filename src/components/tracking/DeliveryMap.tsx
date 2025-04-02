@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { MapPin, Navigation } from 'lucide-react';
 import { toast } from 'sonner';
 
-interface WaypointType {
+export interface WaypointType {
   city: string;
   time: string;
   status: 'completed' | 'current' | 'pending';
