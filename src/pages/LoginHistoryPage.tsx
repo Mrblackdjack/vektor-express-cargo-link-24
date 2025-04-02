@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -21,6 +20,7 @@ interface LoginRecord {
   ip: string;
   date: string;
   isCurrentSession: boolean;
+  ended?: boolean;
 }
 
 const LoginHistoryPage = () => {
