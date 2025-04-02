@@ -20,6 +20,10 @@ import PersonalDataPage from "./pages/PersonalDataPage";
 import RolesPage from "./pages/RolesPage";
 import LoginHistoryPage from "./pages/LoginHistoryPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import OrdersPage from "./pages/OrdersPage";
+import TemplatesPage from "./pages/TemplatesPage";
 
 const queryClient = new QueryClient();
 
@@ -42,11 +46,17 @@ const App = () => (
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/new-cargo" element={<NewCargoPage />} />
           
-          {/* New profile related routes */}
+          {/* Profile related routes */}
           <Route path="/profile/personal-data" element={<PersonalDataPage />} />
           <Route path="/profile/roles" element={<RolesPage />} />
           <Route path="/profile/login-history" element={<LoginHistoryPage />} />
           <Route path="/profile/change-password" element={<ChangePasswordPage />} />
+          
+          {/* New user account related routes */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/templates" element={<TemplatesPage />} />
           
           {/* Additional routes would be added here */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
