@@ -11,6 +11,7 @@ interface DashboardItem {
   icon: React.ReactNode;
   path: string;
   count?: number;
+  highlighted?: boolean;
 }
 
 const UserDashboard = () => {
@@ -32,7 +33,8 @@ const UserDashboard = () => {
       title: 'Отслеживание',
       description: 'Отслеживание текущих перевозок',
       icon: <Map size={24} />,
-      path: '/tracking/VE123456'
+      path: '/tracking/VE123456',
+      highlighted: true
     },
     {
       id: 'cargo',
@@ -88,12 +90,18 @@ const UserDashboard = () => {
       {dashboardItems.map((item) => (
         <Card 
           key={item.id} 
-          className="cursor-pointer hover:shadow-md transition-shadow"
+          className={`cursor-pointer transition-all ${
+            item.highlighted ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 shadow-md' : 'hover:shadow-md'
+          }`}
           onClick={() => handleItemClick(item.path)}
         >
           <CardHeader className="pb-2">
             <div className="flex justify-between items-start">
-              <div className="rounded-full p-2 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300">
+              <div className={`rounded-full p-2 ${
+                item.highlighted 
+                  ? 'bg-blue-200 dark:bg-blue-800 text-blue-600 dark:text-blue-300' 
+                  : 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300'
+              }`}>
                 {item.icon}
               </div>
               {item.count !== undefined && (

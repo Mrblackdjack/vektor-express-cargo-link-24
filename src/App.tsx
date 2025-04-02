@@ -47,6 +47,8 @@ const App = () => (
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/new-cargo" element={<NewCargoPage />} />
           <Route path="/tracking/:orderId" element={<TrackingPage />} />
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/orders/:orderId" element={<OrdersPage />} />
           
           {/* Profile related routes */}
           <Route path="/profile/personal-data" element={<PersonalDataPage />} />
@@ -57,7 +59,6 @@ const App = () => (
           {/* New user account related routes */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/orders" element={<OrdersPage />} />
           <Route path="/templates" element={<TemplatesPage />} />
           
           {/* Additional routes would be added here */}
